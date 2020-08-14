@@ -10,4 +10,17 @@ name="$(basename "$0")"
 export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/filters"
 export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 
-python src/"$name" $@
+target="src/$name"
+
+if [ ! -f src/ansible/__main__.py ]; then
+    echo "ERR  Oops, looks like you have not installed the dependencies yet."
+    echo "ERR  Run the install.sh script."
+    exit 1
+fi
+
+if [[ ! -h "$target" && ! -d "$target" ]]; then
+    echo "ERR  Ansible binary name $target does not exist or is invalid"
+    exit 1
+fi
+
+python "$target" $@
