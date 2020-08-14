@@ -38,6 +38,8 @@ cd "$script_path"
 
 rm -rf tmp; mkdir -p tmp
 
+trap "{ rm -rf ${script_path}/tmp; }" EXIT
+
 install_ansible_portable
 install_custom_plugins
 install_requirements
