@@ -1,0 +1,6 @@
+boto3
+jmespath
+passlib
+python-dotenv
+psycopg2
+pycurl
