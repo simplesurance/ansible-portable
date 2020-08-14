@@ -1,10 +1,7 @@
-# Make coding more python3-ish
-from __future__ import (absolute_import, division, print_function)
-__metaclass__ = type
-
 import re
 
 from ansible.errors import AnsibleFilterError
+
 
 def target2region(value):
     """
@@ -20,6 +17,7 @@ def target2region(value):
 
     raise AnsibleFilterError("Cannot get region out of target: %s" % value)
 
+
 def target2project_id(value):
     """
     Very simple filter plugin to extract project_id from the deployment target
@@ -33,6 +31,7 @@ def target2project_id(value):
         return search.group(1)
 
     raise AnsibleFilterError("Cannot get project_id out of target: %s" % value)
+
 
 class FilterModule(object):
     def filters(self):

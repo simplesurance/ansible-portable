@@ -1,6 +1,3 @@
-from __future__ import (absolute_import, division, print_function)
-__metaclass__ = type
-
 import json
 import os.path
 from pathlib import Path
@@ -34,7 +31,6 @@ class LookupModule(LookupBase):
                     params[name] = value
             except (ValueError, AssertionError) as e:
                 raise AnsibleError(e)
-
 
             path = params['file']
             if params['path']:
