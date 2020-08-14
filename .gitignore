@@ -1,1 +1,11 @@
+/src/ansible
+/plugins/filters
+/plugins/lookups
 /tmp/*
+
+!.gitignore
+
+*.swp
+*~*
+__pycache__
+*.pyc
