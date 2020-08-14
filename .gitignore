@@ -1,0 +1,12 @@
+/dist
+/plugins
+/src/ansible
+/tmp/*
+/VERSION
+
+!.gitignore
+
+*.swp
+*~*
+__pycache__
+*.pyc
