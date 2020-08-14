@@ -7,4 +7,7 @@ cd "$script_path"
 
 name="$(basename "$0")"
 
+export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/filters"
+export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
+
 python src/"$name" $@
