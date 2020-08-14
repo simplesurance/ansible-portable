@@ -29,7 +29,7 @@ function install_custom_plugins() {
 }
 
 function install_requirements() {
-    pip install -t ansible/extras -r requirements.txt
+    pip install -t src/ansible/extras -r requirements.txt
 }
 
 

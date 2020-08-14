@@ -1,6 +1,5 @@
 /src/ansible
-/plugins/filters
-/plugins/lookups
+/plugins
 /tmp/*
 
 !.gitignore
