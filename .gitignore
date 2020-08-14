@@ -1,5 +1,6 @@
-/src/ansible
+/dist
 /plugins
+/src/ansible
 /tmp/*
 
 !.gitignore
