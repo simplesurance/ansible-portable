@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#
+# This script can be used to wrap any pre run logic
+#
+script_path="$(cd "$(dirname "$0")"; pwd -P)"
+cd "$script_path"
+
+name="$(basename "$0")"
+
+python src/"$name" $@

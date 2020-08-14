@@ -12,8 +12,8 @@ function install_ansible_portable() {
     tar -xjf portable-ansible.tar.bz2
     rm -f portable-ansible.tar.bz2
 
-    rm -rf ../ansible
-    cp -rf ansible/ ..
+    rm -rf ../src/ansible
+    mv ansible/ ../src/
     cd -
 }
 
@@ -33,7 +33,7 @@ function install_requirements() {
 }
 
 
-script_path="$(cd "$(dirname "$0")")"
+script_path="$(cd "$(dirname "$0")"; pwd -P)"
 cd "$script_path"
 
 rm -rf tmp; mkdir -p tmp
