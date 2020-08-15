@@ -6,9 +6,10 @@ install:
 	./install.sh
 
 .PHONY: release
-version=$(shell git rev-parse HEAD)
+commit=$(shell git rev-parse HEAD)
 release:
-	echo $(version) > VERSION
-	mkdir -p dist/$(version)
-	tar -czf dist/$(version)/ansible-portable.tar.gz --exclude-vcs --exclude-vcs-ignores {plugins,src,ansible*,VERSION}
-	rm -f VERSION
+	echo "$(RELEASE_VERSION)" > RELEASE
+	echo "$(shell git rev-parse HEAD)" >> RELEASE
+	mkdir -p dist/$(RELEASE_VERSION)
+	tar -czf dist/$(RELEASE_VERSION)/ansible-portable.tar.gz --exclude-vcs --exclude-vcs-ignores {plugins,src,ansible*,RELEASE}
+	rm -f RELEASE
