@@ -2,19 +2,34 @@
 #
 # This script can be used to wrap any pre run logic
 #
-script_path="$(cd "$(dirname "$0")"; pwd -P)"
-cd "$script_path"
+script_path="$(dirname "$(realpath "$0")")"
+
+function realpath() {
+    local real
+    local link
+
+    cd "$(dirname "$1")"
+    link=$(readlink "$(basename "$1")")
+    while [ "$link" ]; do
+        cd "$(dirname "$link")"
+        link=$(readlink "$(basename "$1")")
+    done
+
+    real="$PWD/$(basename "$1")"
+    cd "$PWD"
+    echo "$real"
+}
 
 export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/filters"
 export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 
-if [ ! -f src/ansible/__main__.py ]; then
+if [ ! -f "${script_path}/src/ansible/__main__.py" ]; then
     echo "ERR  Oops, looks like you have not installed the dependencies yet."
     echo "ERR  Run the install.sh script."
     exit 1
 fi
 
-target="src/$(basename "$0")"
+target="${script_path}/src/$(basename "$0")"
 
 if [[ ! -h "$target" && ! -d "$target" ]]; then
     echo "ERR  Ansible binary name $target does not exist or is invalid"
