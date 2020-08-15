@@ -36,8 +36,8 @@ if [[ ! -h "$target" && ! -d "$target" ]]; then
     exit 1
 fi
 
-if [[ "${1:-}" == "--version" && -f RELEASE ]]; then
-    echo "ansible portable v$(head -1 RELEASE) ($(tail -1 RELEASE))"
+if [[ "${1:-}" == "--version" && -f "${script_path}/RELEASE" ]]; then
+    echo "ansible portable v$(head -1 "${script_path}/RELEASE") ($(tail -1 "${script_path}/RELEASE"))"
 fi
 
 python "$target" $@
