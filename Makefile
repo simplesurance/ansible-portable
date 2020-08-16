@@ -1,8 +1,8 @@
 .PHONY: all
-all: install
+all: build
 
-.PHONY: install
-install:
+.PHONY: build
+build: clean
 	./install.sh
 
 .PHONY: clean

@@ -14,7 +14,7 @@ function install_ansible_portable() {
 
     rm -rf ../src/ansible
     mv ansible/ ../src/
-    cd -
+    cd - &>/dev/null
 }
 
 function install_custom_plugins() {
@@ -25,7 +25,7 @@ function install_custom_plugins() {
 
     rm -rf ../plugins/{filters,lookup}
     cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/{filters,lookup} ../plugins/
-    cd -
+    cd - &>/dev/null
 }
 
 function install_requirements() {
