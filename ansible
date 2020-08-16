@@ -24,15 +24,14 @@ export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/
 export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 
 if [ ! -f "${script_path}/src/ansible/__main__.py" ]; then
-    echo "ERR  Oops, looks like you have not installed the dependencies yet."
-    echo "ERR  Run the install.sh script."
+    echo "ERR ansible-portable: ops, looks like you have not installed the dependencies yet."
     exit 1
 fi
 
 target="${script_path}/src/$(basename "$0")"
 
 if [[ ! -h "$target" && ! -d "$target" ]]; then
-    echo "ERR  Ansible binary name $target does not exist or is invalid"
+    echo "ERR ansible-portable: ansible binary name $target does not exist or is invalid."
     exit 1
 fi
 

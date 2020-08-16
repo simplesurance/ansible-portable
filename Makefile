@@ -5,6 +5,11 @@ all: install
 install:
 	./install.sh
 
+.PHONY: clean
+clean:
+	rm -rf src/ansible/*
+	rm -rf plugins/{filters,lookup}
+
 .PHONY: release
 commit=$(shell git rev-parse HEAD)
 release:
