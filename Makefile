@@ -7,8 +7,7 @@ install:
 
 .PHONY: clean
 clean:
-	rm -rf src/ansible/*
-	rm -rf plugins/{filters,lookup}
+	rm -rf src/ansible/* plugins/*
 	rm -rf dist/*
 
 .PHONY: release
@@ -19,6 +18,7 @@ endif
 ifeq (,$(wildcard src/ansible/__main__.py))
 	$(MAKE) install
 endif
+	rm -rf dist/$(RELEASE_VERSION)
 	mkdir -p dist/$(RELEASE_VERSION)
 	cp -rf {plugins,src,ansible*} dist/$(RELEASE_VERSION)
 	echo -e "$(RELEASE_VERSION)\n$(shell git rev-parse HEAD)" > dist/$(RELEASE_VERSION)/RELEASE
