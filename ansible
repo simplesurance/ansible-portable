@@ -20,7 +20,7 @@ function realpath() {
     echo "$real"
 }
 
-export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/filters"
+export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/filters"
 export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 
 if [ ! -f "${script_path}/src/ansible/__main__.py" ]; then
