@@ -9,12 +9,18 @@ install:
 clean:
 	rm -rf src/ansible/*
 	rm -rf plugins/{filters,lookup}
+	rm -rf dist/*
 
 .PHONY: release
-commit=$(shell git rev-parse HEAD)
 release:
-	echo "$(RELEASE_VERSION)" > RELEASE
-	echo "$(shell git rev-parse HEAD)" >> RELEASE
+ifeq ($(RELEASE_VERSION),)
+	$(error "You must define RELEASE_VERSION")
+endif
+ifeq (,$(wildcard src/ansible/__main__.py))
+	$(MAKE) install
+endif
 	mkdir -p dist/$(RELEASE_VERSION)
-	tar -czf dist/$(RELEASE_VERSION)/ansible-portable.tar.gz --exclude-vcs --exclude-vcs-ignores {plugins,src,ansible*,RELEASE}
-	rm -f RELEASE
+	cp -rf {plugins,src,ansible*} dist/$(RELEASE_VERSION)
+	echo -e "$(RELEASE_VERSION)\n$(shell git rev-parse HEAD)" > dist/$(RELEASE_VERSION)/RELEASE
+	tar -czf dist/ansible-portable-$(RELEASE_VERSION).tar.gz --exclude-vcs --exclude-vcs-ignores -C dist/$(RELEASE_VERSION) .
+	sha1sum dist/ansible-portable-$(RELEASE_VERSION).tar.gz | awk '{print $$1}' > dist/ansible-portable-$(RELEASE_VERSION).checksum
