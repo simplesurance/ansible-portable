@@ -23,7 +23,7 @@ function install_custom_plugins() {
     tar -xzf ansible-plugins.tar.gz
     rm -f ansible-plugins.tar.gz
 
-    rm -rf ../plugins/{filters,lookup}
+    rm -rf ../plugins/*
     cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/{filters,lookup} ../plugins/
     cd - &>/dev/null
 }
