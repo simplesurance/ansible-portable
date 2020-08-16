@@ -39,7 +39,7 @@ tmpdir="$(mktemp -d)"
 echo "** Downloading..."
 
 curl -fSL \
-    https://github.com/simplesurance/ansible-portable/releases/download/v${version}/ansible-portable.tar.gz \
+    https://github.com/simplesurance/ansible-portable/releases/download/v${version}/ansible-portable-${version}.tar.gz \
     -o "${tmpdir}/ansible-portable.tar.gz" \
     || err_exit "An error occurred downloading ansible-portable version ${version}"
 
