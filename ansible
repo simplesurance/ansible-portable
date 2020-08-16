@@ -24,14 +24,14 @@ export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/
 export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 
 if [ ! -f "${script_path}/src/ansible/__main__.py" ]; then
-    echo "ERR ansible-portable: ops, looks like you have not installed the dependencies yet."
+    echo "ERR ansible-portable: oops, looks like you have not installed the dependencies yet." >&2
     exit 1
 fi
 
 target="${script_path}/src/$(basename "$0")"
 
 if [[ ! -h "$target" && ! -d "$target" ]]; then
-    echo "ERR ansible-portable: ansible binary name $target does not exist or is invalid."
+    echo "ERR ansible-portable: ansible binary name $target does not exist or is invalid." >&2
     exit 1
 fi
 
@@ -39,4 +39,17 @@ if [[ "${1:-}" == "--version" && -f "${script_path}/RELEASE" ]]; then
     echo "ansible portable v$(head -1 "${script_path}/RELEASE") ($(tail -1 "${script_path}/RELEASE"))"
 fi
 
-python "$target" $@
+if command -v python3 &>/dev/null; then
+    py=python3
+elif command -v python &>/dev/null; then
+    if [[ "$(python -c 'import sys;print(sys.version_info[0]);')" == "2" ]]; then
+        echo "ERR ansible-portable: this version is not compatible with python 2.x" >&2
+        exit 1
+    fi
+    py=python
+else
+    echo "ERR ansible-portable: no valid python 3.x installation was found." >&2
+    exit 1
+fi
+
+"$py" "$target" $@
