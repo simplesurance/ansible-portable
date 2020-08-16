@@ -2,7 +2,7 @@
 set -euo pipefail
 
 function usage() {
-    echo "Arguments: <VERSION> <INSTALL_DIR> [ BIN_DIR ]"
+    echo "Arguments: <VERSION> [ INSTALL_DIR ] [ BIN_DIR ]"
 }
 
 function err() {
@@ -21,7 +21,7 @@ if [ "$#" -lt 1 ]; then
 fi
 
 version="$1"
-install_dir="$2"
+install_dir="${2:-"."}"
 bin_dir="${3:-}"
 
 mkdir -p "$install_dir" || err_exit "Could not create installation directory"
