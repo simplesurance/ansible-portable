@@ -33,7 +33,7 @@ if [[ -n "${bin_dir}" && ! -d "${bin_dir}" ]]; then
     err_exit "Bin directory does not exist"
 fi
 
-install_dir="$(cd "$(dirname "$bin_dir")" && pwd -P)"
+install_dir="$(cd "$install_dir" && pwd -P)"
 tmpdir="$(mktemp -d)"
 
 echo "** Downloading..."
