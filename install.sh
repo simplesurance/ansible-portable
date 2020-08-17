@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ANSIBLE_PORTABLE_VERSION=0.4.2
-ANSIBLE_PLUGINS_VERSION=0.0.5
+ANSIBLE_PLUGINS_VERSION=0.0.6
 
 function install_ansible_portable() {
     cd tmp
