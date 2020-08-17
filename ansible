@@ -20,8 +20,21 @@ function realpath() {
     echo "$real"
 }
 
-export ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/filters"
-export ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
+# ansible doesn't like empty paths, so we have to check before appending
+if [ -n "$ANSIBLE_FILTER_PLUGINS" ]; then
+    ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/filters"
+else
+    ANSIBLE_FILTER_PLUGINS="${script_path}/plugins/filters"
+fi
+
+if [ -n "$ANSIBLE_LOOKUP_PLUGINS" ]; then
+    ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
+else
+    ANSIBLE_LOOKUP_PLUGINS="${script_path}/plugins/lookup"
+fi
+
+export ANSIBLE_LOOKUP_PLUGINS
+export ANSIBLE_FILTER_PLUGINS
 
 if [ ! -f "${script_path}/src/ansible/__main__.py" ]; then
     echo "ERR ansible-portable: oops, looks like you have not installed the dependencies yet." >&2
