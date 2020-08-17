@@ -16,7 +16,7 @@ ifeq ($(RELEASE_VERSION),)
 	$(error "You must define RELEASE_VERSION")
 endif
 ifeq (,$(wildcard src/ansible/__main__.py))
-	$(MAKE) install
+	$(MAKE) build
 endif
 	rm -rf dist/$(RELEASE_VERSION)
 	mkdir -p dist/$(RELEASE_VERSION)
