@@ -1,5 +1,6 @@
 boto3==1.14.42
 cryptography==3.0
+docker==4.3.0
 jmespath==0.10.0
 passlib==1.7.2
 python-dotenv==0.14
