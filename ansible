@@ -61,10 +61,14 @@ else
     exit 1
 fi
 
-"$py" "$target" $@
+"$py" "$target" "$@"
+
+ret=$?
 
 # show our version at the end if requested
 if [[ "${1:-}" == "--version" && -f "${script_path}/RELEASE" ]]; then
     echo
     echo "ansible portable v$(head -1 "${script_path}/RELEASE") ($(tail -1 "${script_path}/RELEASE"))"
 fi
+
+exit $ret
