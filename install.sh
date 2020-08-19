@@ -24,7 +24,8 @@ function install_custom_plugins() {
     rm -f ansible-plugins.tar.gz
 
     rm -rf ../plugins/*
-    cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/{callback,filter,lookup,modules} ../plugins/
+    cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/* ../plugins/
+    rm -f ../plugins/{.gitignore,README.md}
     cd - &>/dev/null
 }
 
