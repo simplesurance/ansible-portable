@@ -20,7 +20,7 @@ ifeq (,$(wildcard src/ansible/__main__.py))
 endif
 	rm -rf dist/$(RELEASE_VERSION)
 	mkdir -p dist/$(RELEASE_VERSION)
-	cp -rf {ansible*,plugins,srcripts,src} dist/$(RELEASE_VERSION)
+	cp -rf {ansible*,plugins,scripts,src} dist/$(RELEASE_VERSION)
 	echo -e "$(RELEASE_VERSION)\n$(shell git rev-parse HEAD)" > dist/$(RELEASE_VERSION)/RELEASE
 	tar -czf dist/ansible-portable-$(RELEASE_VERSION).tar.gz --exclude-vcs --exclude-vcs-ignores -C dist/$(RELEASE_VERSION) .
 	sha1sum dist/ansible-portable-$(RELEASE_VERSION).tar.gz | awk '{print $$1}' > dist/ansible-portable-$(RELEASE_VERSION).checksum
