@@ -22,15 +22,15 @@ function realpath() {
 
 # ansible doesn't like empty paths, so we have to check before appending
 if [ -n "$ANSIBLE_FILTER_PLUGINS" ]; then
-    ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/filter_plugins"
+    ANSIBLE_FILTER_PLUGINS="${ANSIBLE_FILTER_PLUGINS}:${script_path}/plugins/filter"
 else
-    ANSIBLE_FILTER_PLUGINS="${script_path}/plugins/filter_plugins"
+    ANSIBLE_FILTER_PLUGINS="${script_path}/plugins/filter"
 fi
 
 if [ -n "$ANSIBLE_LOOKUP_PLUGINS" ]; then
-    ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup_plugins"
+    ANSIBLE_LOOKUP_PLUGINS="${ANSIBLE_LOOKUP_PLUGINS}:${script_path}/plugins/lookup"
 else
-    ANSIBLE_LOOKUP_PLUGINS="${script_path}/plugins/lookup_plugins"
+    ANSIBLE_LOOKUP_PLUGINS="${script_path}/plugins/lookup"
 fi
 
 export ANSIBLE_LOOKUP_PLUGINS
