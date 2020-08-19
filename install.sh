@@ -24,7 +24,7 @@ function install_custom_plugins() {
     rm -f ansible-plugins.tar.gz
 
     rm -rf ../plugins/*
-    cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/{filters,lookup} ../plugins/
+    cp -rf ansible-plugins-${ANSIBLE_PLUGINS_VERSION}/{callback,filter,lookup,modules} ../plugins/
     cd - &>/dev/null
 }
 
@@ -43,5 +43,3 @@ trap "{ rm -rf ${script_path}/tmp; }" EXIT
 install_ansible_portable
 install_custom_plugins
 install_requirements
-
-rm -rf tmp
