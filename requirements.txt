@@ -6,3 +6,4 @@ passlib==1.7.2
 python-dotenv==0.14
 psycopg2==2.8.5
 pycurl==7.43
+setuptools
